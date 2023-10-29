@@ -5,7 +5,7 @@
  * Функция создания массива
  * @param size Размер массива
  */
-int* createArray(size_t size);
+int* createArray(const size_t size);
 
 /**
  * Функция удаления массива
@@ -18,7 +18,7 @@ void deleteArray(int* arr);
  * @param size Размер массива
  * @param index Индекс элемента
  */
-int getElement(int* arr, int index); 
+int getElement(const int* arr, const int index); 
 
 /**
  * Функция установки значения элемента
@@ -26,7 +26,7 @@ int getElement(int* arr, int index);
  * @param index Индекс элемента
  * @param value Вводимое значение
  */
-void setElement(int* arr, int index, int value);
+void setElement(int* arr, const int index, const int value);
 
 /**
  * Функция изменения размера массива
@@ -34,28 +34,28 @@ void setElement(int* arr, int index, int value);
  * @param size Размер массива
  * @param newSize Новый размер массива
  */
-int* resizeArray(int* arr, size_t size, size_t newSize); 
+int* resizeArray(int* arr, const size_t size, const size_t newSize); 
 
 /**
  * Вывод массива
  * @param arr Массив
  * @param size Размер массива
  */
-void printArray(int* arr, size_t size);
+void printArray(const int* arr, const size_t size);
 
 /**
  * Функция поиска максимального элемента массива
  * @param arr Массив
  * @param size Размер массива
  */
-int getMaxElement(int* arr, size_t size);
+int getMaxElement(const int* arr, const size_t size);
 
 /**
  * Функция поиска минимального элемента массива
  * @param arr Массив
  * @param size Размер массива
  */
-int getMinElement(int* arr, size_t size);
+int getMinElement(const int* arr, const size_t size);
 
 int main() {
     size_t size = 5;
@@ -90,7 +90,7 @@ int main() {
 }
 
 // Функция создания массива
-int* createArray(size_t size) {
+int* createArray(const size_t size) {
     int* arr = new int[size];
     return arr;
 }
@@ -101,17 +101,17 @@ void deleteArray(int* arr) {
 }
 
 // Функция получения значения элемента
-int getElement(int* arr, int index) {
+int getElement(const int* arr, const int index) {
     return arr[index];
 }
 
 // Функция установки значения элемента
-void setElement(int* arr, int index, int value) {
+void setElement(int* arr, const int index, const int value) {
     arr[index] = value;
 }
 
 // Функция изменения размера массива
-int* resizeArray(int* arr, size_t size, size_t newSize) {
+int* resizeArray(int* arr, const size_t size, const size_t newSize) {
     int* newArr = new int[newSize];
     int minSize = (size < newSize) ? size : newSize;
 
@@ -124,14 +124,14 @@ int* resizeArray(int* arr, size_t size, size_t newSize) {
 }
 
 // Функция вывода массива
-void printArray(int* arr, size_t size) {
+void printArray(const int* arr, const size_t size) {
     for (int i = 0; i < size; i++) {
         std::cout << "arr[" << i << "] = " << arr[i] << "\n";
     }
 }
 
 // Функция поиска максимального элемента массива
-int getMaxElement(int* arr, size_t size) {
+int getMaxElement(const int* arr, const size_t size) {
     int maxEl = std::numeric_limits<int>::min();
   
     for(int i = 0; i < size; i++){
@@ -144,7 +144,7 @@ int getMaxElement(int* arr, size_t size) {
 }
 
 // Функция поиска минимального элемента массива
-int getMinElement(int* arr, size_t size) {
+int getMinElement(const int* arr, const size_t size) {
     int minEl = std::numeric_limits<int>::max();
   
     for(int i = 0; i < size; i++){
