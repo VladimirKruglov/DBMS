@@ -1,35 +1,36 @@
 #include <iostream>
 #include <limits>
+#include <stdexcept>
 
 /**
- * Функция создания массива
+ * @brief Функция создания массива
  * @param size Размер массива
  */
 int* createArray(const size_t size);
 
 /**
- * Функция удаления массива
+ * @brief Функция удаления массива
  * @param arr Массив
  */
 void deleteArray(int* arr);
 
 /**
- * Функция получения значения элемента
+ * @brief Функция получения значения элемента
  * @param size Размер массива
  * @param index Индекс элемента
  */
-int getElement(const int* arr, const int index); 
+int getElement(const int* arr, const size_t size, const int index); 
 
 /**
- * Функция установки значения элемента
+ * @brief Функция установки значения элемента
  * @param arr Массив
  * @param index Индекс элемента
  * @param value Вводимое значение
  */
-void setElement(int* arr, const int index, const int value);
+void setElement(int* arr, const size_t size, const int index, const int value);
 
 /**
- * Функция изменения размера массива
+ * @brief Функция изменения размера массива
  * @param arr Массив
  * @param size Размер массива
  * @param newSize Новый размер массива
@@ -37,21 +38,21 @@ void setElement(int* arr, const int index, const int value);
 int* resizeArray(int* arr, const size_t size, const size_t newSize); 
 
 /**
- * Вывод массива
+ * @brief Вывод массива
  * @param arr Массив
  * @param size Размер массива
  */
 void printArray(const int* arr, const size_t size);
 
 /**
- * Функция поиска максимального элемента массива
+ * @brief Функция поиска максимального элемента массива
  * @param arr Массив
  * @param size Размер массива
  */
 int getMaxElement(const int* arr, const size_t size);
 
 /**
- * Функция поиска минимального элемента массива
+ * @brief Функция поиска минимального элемента массива
  * @param arr Массив
  * @param size Размер массива
  */
@@ -62,8 +63,8 @@ int main() {
     int* arr = createArray(size);
 
     // Добавляем значения в массив
-    for (int i = 0; i < size; i++) {
-        setElement(arr, i, i + 1);
+    for (size_t i = 0; i < size; i++) {
+        setElement(arr, size, i, i + 1);
     }
 
     // Выводим значения массива
@@ -74,8 +75,8 @@ int main() {
     arr = resizeArray(arr, size, newSize);
 
     // Добавляем новые значения в расширенный массив
-    for (int i = size; i < newSize; i++) {
-        setElement(arr, i, i + 1);
+    for (size_t i = size; i < newSize; i++) {
+        setElement(arr, size, i, i + 1);
     }
 
     std::cout << "\n\n";
@@ -101,13 +102,22 @@ void deleteArray(int* arr) {
 }
 
 // Функция получения значения элемента
-int getElement(const int* arr, const int index) {
-    return arr[index];
+int getElement(const int* arr, const size_t size, const int index) {
+    if (index >= 0 && index < size) {
+        return arr[index];
+    } else {
+        throw std::out_of_range("Index out of range");
+    }
 }
 
 // Функция установки значения элемента
-void setElement(int* arr, const int index, const int value) {
-    arr[index] = value;
+void setElement(int* arr, const size_t size, const int index, const int value) {
+    if (index >= 0 && index < size) {
+        arr[index] = value;
+    }
+    else {
+        throw std::out_of_range("Index out of range");
+    }
 }
 
 // Функция изменения размера массива
@@ -115,7 +125,7 @@ int* resizeArray(int* arr, const size_t size, const size_t newSize) {
     int* newArr = new int[newSize];
     int minSize = (size < newSize) ? size : newSize;
 
-    for (int i = 0; i < minSize; i++) {
+    for (size_t i = 0; i < minSize; i++) {
         newArr[i] = arr[i];
     }
 
@@ -125,16 +135,16 @@ int* resizeArray(int* arr, const size_t size, const size_t newSize) {
 
 // Функция вывода массива
 void printArray(const int* arr, const size_t size) {
-    for (int i = 0; i < size; i++) {
+    for (size_t i = 0; i < size; i++) {
         std::cout << "arr[" << i << "] = " << arr[i] << "\n";
     }
 }
 
 // Функция поиска максимального элемента массива
 int getMaxElement(const int* arr, const size_t size) {
-    int maxEl = std::numeric_limits<int>::min();
+    int maxEl = arr[0];
   
-    for(int i = 0; i < size; i++){
+    for(size_t i = 1; i < size; i++){
         if(arr[i] > maxEl){
            maxEl = arr[i];
         }
@@ -145,9 +155,9 @@ int getMaxElement(const int* arr, const size_t size) {
 
 // Функция поиска минимального элемента массива
 int getMinElement(const int* arr, const size_t size) {
-    int minEl = std::numeric_limits<int>::max();
+    int minEl = arr[0];
   
-    for(int i = 0; i < size; i++){
+    for(size_t i = 1; i < size; i++){
         if(arr[i] < minEl){
            minEl = arr[i];
         }
