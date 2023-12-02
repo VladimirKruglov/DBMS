@@ -1,7 +1,10 @@
 #include <iostream>
+#include <Windows.h>
 #include "bst.hpp"
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
+
     BST<int> tree;
     tree.insert(50);
     tree.insert(30);
