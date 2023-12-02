@@ -1,15 +1,30 @@
 #include <iostream>
-#include "avl-tree.hpp"
+#include "bst.hpp"
 
 int main() {
-    AVLTree tree;
-    int keys[] = {9, 5, 10, 0, 6, 11, -1, 1, 2};
-    for (int key : keys) {
-        tree.insert(key);
-    }
+    BST<int> tree;
+    tree.insert(50);
+    tree.insert(30);
+    tree.insert(20);
+    tree.insert(40);
+    tree.insert(70);
+    tree.insert(60);
+    tree.insert(80);
 
-    std::cout << "Tree structure:\n";
-    tree.preOrder();
+    std::cout << "Центрированный обход построенного дерева:\n";
+    tree.printTree();
+
+    std::cout << "Удаление узла с ключом 20\n";
+    tree.deleteKey(20);
+    std::cout << "Центрированный обход измененного дерева:\n";
+    tree.printTree();
+
+    std::cout << "Поиск узла с ключом 60...\n";
+    Node<int>* searchResult = tree.search(60);
+    if (searchResult != nullptr)
+        std::cout << "Найден узел с ключом " << searchResult->key << "\n";
+    else
+        std::cout << "Узел с ключом 60 не найден в дереве\n";
 
     return 0;
 }
