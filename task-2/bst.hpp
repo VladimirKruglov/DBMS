@@ -8,8 +8,8 @@ struct Node {
     Node<T>* right;
 
     /**
-    * @brief Конструктор узла.
-    * @param key Ключ узла.
+    * @brief Конструктор узла
+    * @param key Ключ узла
     */
     explicit Node(T key) : key(key), left(nullptr), right(nullptr) {}
 };
@@ -20,74 +20,74 @@ private:
     Node<T>* root;
 
     /**
-    * @brief Вставка ключа в узел дерева.
-    * @param node Узел для добавления.
-    * @param key Ключ для добавления.
-    * @return Узел дерева.
+    * @brief Вставка ключа в узел дерева
+    * @param node Узел для добавления
+    * @param key Ключ для добавления
+    * @return Узел дерева
     */
     Node<T>* insert(Node<T>* node, T key);
 
     /**
-    * @brief Удаление ключа из узла дерева.
-    * @param root Корневой узел.
-    * @param key Ключ для удаления.
+    * @brief Удаление ключа из узла дерева
+    * @param root Корневой узел
+    * @param key Ключ для удаления
     * @return Узел дерева.
     */
     Node<T>* deleteNode(Node<T>* root, T key);
 
     /**
-    * @brief Наименьший узел в дереве.
-    * @param node Узел для поиска.
-    * @return Узел с наименьшим ключом.
+    * @brief Наименьший узел в дереве
+    * @param node Узел для поиска
+    * @return Узел с наименьшим ключом
     */
     Node<T>* minValueNode(Node<T>* node);
 
     /**
-    * @brief Вывод узлов дерева в центрированном порядке.
-    * @param root Корневой узел.
+    * @brief Вывод узлов дерева в центрированном порядке
+    * @param root Корень дерева
     */
     void inorder(Node<T>* root) const;
 
     /**
-    * @brief Поиск ключа в дереве.
-    * @param root Корневой узел.
-    * @param key Ключ для поиска.
-    * @return Узел с ключом, если он существует.
+    * @brief Поиск ключа в дереве
+    * @param root Корень дерева
+    * @param key Ключ для поиска
+    * @return Узел с ключом, если он существует
     */
     Node<T>* search(Node<T>* root, T key) const;
 
 public:
     /**
-    * @brief Конструктор дерева.
+    * @brief Конструктор дерева
     */
     BST();
 
     /**
-    * @brief Деструктор дерева.
+    * @brief Деструктор дерева
     */
     ~BST();
 
     /**
-    * @brief Вставка ключа в дерево.
-    * @param key Ключ для вставки.
+    * @brief Вставка ключа в дерево
+    * @param key Ключ для вставки
     */
     void insert(T key);
 
     /**
-    * @brief Удаление ключа из дерева.
-    * @param key Ключ для удаления.
+    * @brief Удаление ключа из дерева
+    * @param key Ключ для удаления
     */
     void deleteKey(T key);
 
     /**
-    * @brief Вывод дерева.
+    * @brief Вывод дерева
     */
     void printTree() const;
 
     /**
-    * @brief Поиск ключа в дереве.
-    * @param key Ключ для поиска.
-    * @return Узел с ключом, если он существует.
+    * @brief Поиск ключа в дереве
+    * @param key Ключ для поиска
+    * @return Узел с ключом, если он существует
     */
     Node<T>* search(T key) const;
 };
@@ -105,7 +105,6 @@ Node<T>* BST<T>::insert(Node<T>* node, T key) {
     else if (key > node->key)
         node->right = insert(node->right, key);
 
-    // возвращаем неизменный указатель
     return node;
 }
 
@@ -195,7 +194,6 @@ Node<T>* BST<T>::search(T key) const {
     return search(root, key);
 }
 
-// явное инстанцирование для int
 template class BST<int>;
 
-#endif // BST_HPP
+#endif

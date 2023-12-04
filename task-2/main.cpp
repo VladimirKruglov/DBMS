@@ -14,15 +14,15 @@ int main() {
     tree.insert(60);
     tree.insert(80);
 
-    std::cout << "Центрированный обход построенного дерева:\n";
+    std::cout << "Вывод дерева:\n";
     tree.printTree();
 
     std::cout << "Удаление узла с ключом 20\n";
     tree.deleteKey(20);
-    std::cout << "Центрированный обход измененного дерева:\n";
+    std::cout << "Вывод измененного дерева:\n";
     tree.printTree();
 
-    std::cout << "Поиск узла с ключом 60...\n";
+    std::cout << "Поиск узла с ключом 60\n";
     Node<int>* searchResult = tree.search(60);
     if (searchResult != nullptr)
         std::cout << "Найден узел с ключом " << searchResult->key << "\n";
